@@ -1,26 +1,146 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Palette de couleurs principales */
+  --teal-dark: #00747C;
+  --teal-primary: #00BBC9;
+  --teal-light: #33C9D6;
+  --gray-light: #CACACA;
+  --gray-medium: #878787;
+  --gray-dark: #202022;
+  
+  /* Couleurs sémantiques - Light theme par défaut */
+  --primary: var(--teal-primary);
+  --primary-dark: var(--teal-dark);
+  --primary-light: var(--teal-light);
+  
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-accent: #F0F9FA;
+  
+  --text-primary: var(--gray-dark);
+  --text-secondary: var(--gray-medium);
+  --text-muted: #6B7280;
+  --text-inverse: #FFFFFF;
+  
+  --border-primary: #E5E7EB;
+  --border-secondary: #F3F4F6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-primary: var(--gray-dark);
+    --bg-secondary: #2A2A2C;
+    --bg-accent: #1A1A1C;
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: var(--gray-light);
+    --text-muted: var(--gray-medium);
+    --text-inverse: var(--gray-dark);
+    
+    --border-primary: #3F3F41;
+    --border-secondary: #2F2F31;
   }
 }
 
+[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-accent: #F0F9FA;
+  
+  --text-primary: var(--gray-dark);
+  --text-secondary: var(--gray-medium);
+  --text-muted: #6B7280;
+  --text-inverse: #FFFFFF;
+  
+  --border-primary: #E5E7EB;
+  --border-secondary: #F3F4F6;
+}
+
+[data-theme="dark"] {
+  --bg-primary: var(--gray-dark);
+  --bg-secondary: #2A2A2C;
+  --bg-accent: #1A1A1C;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: var(--gray-light);
+  --text-muted: var(--gray-medium);
+  --text-inverse: var(--gray-dark);
+  
+  --border-primary: #3F3F41;
+  --border-secondary: #2F2F31;
+}
+
+/* Classes utilitaires personnalisées */
+@layer utilities {
+  .bg-theme {
+    background-color: var(--bg-primary);
+  }
+  
+  .bg-theme-secondary {
+    background-color: var(--bg-secondary);
+  }
+  
+  .bg-theme-accent {
+    background-color: var(--bg-accent);
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  }
+  
+  .bg-gradient-background {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+  }
+  
+
+  
+  .text-theme-primary {
+    color: var(--text-primary);
+  }
+  
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+  
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .border-theme {
+    border-color: var(--border-primary);
+  }
+  
+  .border-theme-secondary {
+    border-color: var(--border-secondary);
+  }
+  
+  .placeholder-theme-muted::placeholder {
+    color: var(--text-muted);
+  }
+  
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .text-primary-light {
+    color: var(--primary-light);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

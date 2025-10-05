@@ -1,0 +1,40 @@
+// Style glassmorphism moderne pour ThemeToggle
+.themeToggleGlass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 187, 201, 0.15);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 187, 201, 0.04);
+
+  &:hover {
+    background: rgba(0, 187, 201, 0.12);
+    border-color: rgba(0, 187, 201, 0.3);
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 187, 201, 0.08);
+  }
+}
+
+// Adaptation dark mode
+@media (prefers-color-scheme: dark) {
+  .themeToggleGlass {
+    background: rgba(32, 32, 34, 0.5);
+    border: 1px solid rgba(0, 187, 201, 0.25);
+
+    &:hover {
+      background: rgba(0, 116, 124, 0.15);
+      border-color: rgba(0, 187, 201, 0.4);
+    }
+  }
+}
+
+:global([data-theme="dark"]) .themeToggleGlass {
+  background: rgba(32, 32, 34, 0.5);
+  border: 1px solid rgba(0, 187, 201, 0.25);
+
+  &:hover {
+    background: rgba(0, 116, 124, 0.15);
+    border-color: rgba(0, 187, 201, 0.4);
+  }
+}
