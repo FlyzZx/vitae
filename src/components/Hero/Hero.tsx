@@ -35,7 +35,7 @@ export default function Hero() {
               />
               
               {/* Container de l'illustration */}
-              <ProfileIllustration />
+              <ProfileIllustration src="/profile.png" />
             </div>
           </motion.div>
 
