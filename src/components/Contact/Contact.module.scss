@@ -101,3 +101,18 @@
   background: color-mix(in srgb, var(--bg-secondary) 60%, transparent);
   border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
 }
+
+// Bouton de contact avec meilleure visibilité en light mode
+.submitButton {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 
+    0 8px 24px color-mix(in srgb, var(--primary) 25%, transparent),
+    0 4px 12px color-mix(in srgb, var(--primary) 15%, transparent);
+  
+  &:hover {
+    box-shadow: 
+      0 12px 32px color-mix(in srgb, var(--primary) 35%, transparent),
+      0 6px 16px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+}

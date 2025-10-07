@@ -77,7 +77,7 @@ export default function Hero() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
                   <motion.button 
-                    className="px-6 py-3 bg-gradient-primary text-white rounded-full font-semibold transition-transform duration-200 shadow-lg whitespace-nowrap"
+                    className={`px-6 py-3 ${styles.primaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
                     onClick={() => {
                       document.getElementById('about')?.scrollIntoView({ 
                         behavior: 'smooth' 
@@ -89,7 +89,7 @@ export default function Hero() {
                     Découvrir mon parcours
                   </motion.button>
                   <motion.button 
-                    className="px-6 py-3 border-2 border-theme rounded-full font-semibold transition-all duration-200 whitespace-nowrap text-theme-primary hover:border-opacity-60"
+                    className={`px-6 py-3 ${styles.secondaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
                     onClick={() => {
                       document.getElementById('contact')?.scrollIntoView({ 
                         behavior: 'smooth' 

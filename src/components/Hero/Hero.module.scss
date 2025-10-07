@@ -198,3 +198,53 @@
       radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--text-muted) 6%, transparent) 0%, transparent 60%);
   }
 }
+
+// Boutons du Hero avec meilleure visibilité
+.primaryButton {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 
+    0 8px 24px color-mix(in srgb, var(--primary) 25%, transparent),
+    0 4px 12px color-mix(in srgb, var(--primary) 15%, transparent);
+  
+  &:hover {
+    box-shadow: 
+      0 12px 32px color-mix(in srgb, var(--primary) 35%, transparent),
+      0 6px 16px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+}
+
+.secondaryButton {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+  box-shadow: 
+    0 4px 16px color-mix(in srgb, var(--primary) 10%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--primary) 10%, transparent);
+  
+  &:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    border-color: var(--primary-light);
+    box-shadow: 
+      0 8px 24px color-mix(in srgb, var(--primary) 20%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .secondaryButton {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    
+    &:hover {
+      background: color-mix(in srgb, var(--primary) 15%, transparent);
+    }
+  }
+}
+
+:global([data-theme="dark"]) .secondaryButton {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  
+  &:hover {
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+}

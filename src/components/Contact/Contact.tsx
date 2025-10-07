@@ -167,7 +167,7 @@ export default function Contact() {
 
               <motion.button
                 type="submit"
-                className="w-full p-4 bg-gradient-primary rounded-lg font-semibold hover:opacity-90 transition-all duration-200"
+                className={`w-full p-4 ${styles.submitButton} rounded-lg font-semibold transition-all duration-200`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
