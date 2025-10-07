@@ -72,9 +72,9 @@ export default function Hero() {
                 {showContent && (
                   <motion.div 
                     className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start w-full"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
                   >
                   <motion.button 
                     className={`px-6 py-3 ${styles.primaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}

@@ -36,7 +36,7 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       prompt: "nicolas@dev:~$",
       command: "whoami",
       output: ["Nicolas FARACI", "Développeur Full-Stack"],
-      delay: 400
+      delay: 150
     },
     {
       prompt: "nicolas@dev:~$",
@@ -49,7 +49,7 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
         '  "cloud": ["Kubernetes", "GCP"]',
         "}"
       ],
-      delay: 200
+      delay: 80
     },
     {
       prompt: "nicolas@dev:~$",
@@ -58,7 +58,7 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
         "On branch main",
         "Prêt pour de nouveaux projets ! 🚀"
       ],
-      delay: 300
+      delay: 120
     }
   ]
 
@@ -73,7 +73,7 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
 
   useEffect(() => {
     const executeCommands = async () => {
-      await new Promise(resolve => setTimeout(resolve, 600))
+      await new Promise(resolve => setTimeout(resolve, 300))
 
       for (let cmdIndex = 0; cmdIndex < commands.length; cmdIndex++) {
         const cmd = commands[cmdIndex]
@@ -96,11 +96,11 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
             lastCmd.currentTypedCommand = cmd.command.slice(0, i)
             return newCommands
           })
-          await new Promise(resolve => setTimeout(resolve, 50))
+          await new Promise(resolve => setTimeout(resolve, 30))
         }
 
         // Pause avant l'output
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise(resolve => setTimeout(resolve, 100))
         
         // Marquer la frappe comme terminée
         setExecutedCommands(prev => {
@@ -118,12 +118,12 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
             lastCmd.currentOutput = cmd.output.slice(0, i + 1)
             return newCommands
           })
-          await new Promise(resolve => setTimeout(resolve, cmd.delay || 300))
+          await new Promise(resolve => setTimeout(resolve, cmd.delay || 150))
         }
 
         // Pause avant la commande suivante
         if (cmdIndex < commands.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 500))
+          await new Promise(resolve => setTimeout(resolve, 200))
         }
       }
 
@@ -131,7 +131,7 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       setTimeout(() => {
         setIsComplete(true)
         onCompleteRef.current()
-      }, 800)
+      }, 300)
     }
 
     executeCommands()
