@@ -85,26 +85,101 @@
   }
 }
 
-// Style pour le curseur de l'effet machine à écrire
-.cursor {
-  display: inline-block;
-  font-weight: normal;
-  color: var(--primary, #00BBC9);
-  margin-left: 3px;
-  font-size: 1em;
-  line-height: 1;
+// Effet code matrix en arrière-plan
+.heroSection {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(45deg, transparent 48%, rgba(0, 187, 201, 0.01) 49%, rgba(0, 187, 201, 0.01) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgba(0, 116, 124, 0.008) 49%, rgba(0, 116, 124, 0.008) 51%, transparent 52%);
+    background-size: 60px 60px, 40px 40px;
+    pointer-events: none;
+    opacity: 0.4;
+    animation: matrixFlow 20s linear infinite;
+  }
 }
 
-// Adaptation pour le thème sombre
-:global([data-theme="dark"]) .cursor {
-  color: var(--primary, #00BBC9);
-  text-shadow: 0 0 8px rgba(0, 187, 201, 0.6);
+@keyframes matrixFlow {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 60px 60px, -40px 40px;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .cursor {
-    color: var(--primary, #00BBC9);
-    text-shadow: 0 0 8px rgba(0, 187, 201, 0.6);
+// Amélioration de l'illustration avec effet dev
+.illustrationColumn {
+  // Effet de "scan lines" subtil
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 187, 201, 0.02) 2px,
+      rgba(0, 187, 201, 0.02) 4px
+    );
+    pointer-events: none;
+    opacity: 0.6;
+    animation: scanLines 8s ease-in-out infinite;
+    z-index: 1;
+  }
+}
+
+@keyframes scanLines {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-5px);
+  }
+}
+
+// Optimisations responsive pour l'expérience développeur
+@media (max-width: 1023px) {
+  .heroSection {
+    // Réduction des effets sur tablette/mobile pour les performances
+    &::after {
+      opacity: 0.3;
+      animation-duration: 30s;
+    }
+  }
+  
+  .illustrationColumn {
+    // Réduction des effets scan lines sur mobile
+    &::before {
+      opacity: 0.3;
+      animation-duration: 12s;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .heroSection {
+    // Effets minimalistes sur mobile
+    &::after {
+      opacity: 0.2;
+      animation: none;
+    }
+  }
+  
+  .illustrationColumn {
+    &::before {
+      display: none; // Pas de scan lines sur mobile
+    }
+    
+    // Débordement réduit sur mobile
+    margin-right: -5%;
   }
 }
 
