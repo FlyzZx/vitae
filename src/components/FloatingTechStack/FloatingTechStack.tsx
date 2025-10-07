@@ -139,11 +139,11 @@ export default function FloatingTechStack() {
           
           {/* Glow effect derrière le logo */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-full opacity-40 blur-xl -z-10"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full opacity-15 blur-lg -z-10"
             style={{ backgroundColor: tech.color }}
             animate={{
-              opacity: [0.4, 0.7, 0.4],
-              scale: [1, 1.2, 1]
+              opacity: [0.15, 0.25, 0.15],
+              scale: [1, 1.1, 1]
             }}
             transition={{
               duration: 3 + index * 0.3,
