@@ -160,11 +160,11 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
                 {cmd.isTyping ? cmd.currentTypedCommand : cmd.command}
                 {cmd.isTyping && showCursor && (
                   <motion.span 
-                    className="bg-green-400 text-gray-900 ml-1"
+                    className="text-green-400 ml-0.5 inline-block"
                     animate={{ opacity: [1, 0] }}
                     transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
                   >
-                    █
+                    |
                   </motion.span>
                 )}
               </span>
@@ -205,11 +205,11 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
           >
             <span className="text-blue-400 font-semibold">nicolas@dev:~$</span>
             <motion.span 
-              className="bg-green-400 text-gray-900"
+              className="text-green-400 ml-1 inline-block"
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
             >
-              █
+              |
             </motion.span>
           </motion.div>
         )}
