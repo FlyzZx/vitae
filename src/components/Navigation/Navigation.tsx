@@ -34,13 +34,20 @@ export default function Navigation() {
 
       // Détection de la section active
       const sections = navigationItems.map(item => document.getElementById(item.id))
-      const scrollPosition = totalScroll + 200
+      const scrollPosition = totalScroll + window.innerHeight / 2
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navigationItems[i].id)
-          break
+      // Si on est en bas de page, activer la dernière section
+      const isAtBottom = window.innerHeight + totalScroll >= document.documentElement.scrollHeight - 10
+      
+      if (isAtBottom) {
+        setActiveSection(navigationItems[navigationItems.length - 1].id)
+      } else {
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i]
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(navigationItems[i].id)
+            break
+          }
         }
       }
     }
