@@ -43,9 +43,10 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       command: "cat skills.json",
       output: [
         "{",
-        '  "frontend": ["React", "TypeScript", "Next.js"],',
-        '  "backend": ["Node.js", "Python", "PostgreSQL"],',
-        '  "passion": "Innovation & Expériences utilisateur"',
+        '  "frontend": ["Next.js", "React", "TypeScript"],',
+        '  "backend": ["Java Spring Boot", "PHP Symfony"],',
+        '  "data": ["Kafka", "MongoDB", "PostgreSQL"],',
+        '  "cloud": ["Kubernetes", "GCP"]',
         "}"
       ],
       delay: 200
