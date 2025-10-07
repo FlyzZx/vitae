@@ -1,74 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette de couleurs principales */
-  --teal-dark: #00747C;
-  --teal-primary: #00BBC9;
-  --teal-light: #33C9D6;
-  --gray-light: #CACACA;
-  --gray-medium: #878787;
-  --gray-dark: #202022;
+  /* Palette de couleurs principales - Developer Blue Theme */
+  --blue-dark: #0052CC;
+  --blue-primary: #0066FF;
+  --blue-light: #3385FF;
+  --purple-accent: #7C3AED;
+  --gray-900: #111827;
+  --gray-700: #374151;
+  --gray-500: #6B7280;
+  --gray-300: #D1D5DB;
+  --gray-100: #F3F4F6;
   
   /* Couleurs sémantiques - Light theme par défaut */
-  --primary: var(--teal-primary);
-  --primary-dark: var(--teal-dark);
-  --primary-light: var(--teal-light);
+  --primary: var(--blue-primary);
+  --primary-dark: var(--blue-dark);
+  --primary-light: var(--blue-light);
+  --accent: var(--purple-accent);
   
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
-  --bg-accent: #F0F9FA;
+  --bg-secondary: #F7F9FC;
+  --bg-accent: #EEF2F7;
   
-  --text-primary: var(--gray-dark);
-  --text-secondary: var(--gray-medium);
-  --text-muted: #6B7280;
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-muted: var(--gray-500);
   --text-inverse: #FFFFFF;
   
   --border-primary: #E5E7EB;
-  --border-secondary: #F3F4F6;
+  --border-secondary: var(--gray-100);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: var(--gray-dark);
-    --bg-secondary: #2A2A2C;
-    --bg-accent: #1A1A1C;
+    --bg-primary: #0D1117;
+    --bg-secondary: #161B22;
+    --bg-accent: #1F2937;
     
-    --text-primary: #FFFFFF;
-    --text-secondary: var(--gray-light);
-    --text-muted: var(--gray-medium);
-    --text-inverse: var(--gray-dark);
+    --text-primary: #E6EDF3;
+    --text-secondary: #C9D1D9;
+    --text-muted: #9CA3AF;
+    --text-inverse: var(--gray-900);
     
-    --border-primary: #3F3F41;
-    --border-secondary: #2F2F31;
+    --border-primary: #30363D;
+    --border-secondary: #21262D;
   }
 }
 
 [data-theme="light"] {
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
-  --bg-accent: #F0F9FA;
+  --bg-secondary: #F7F9FC;
+  --bg-accent: #EEF2F7;
   
-  --text-primary: var(--gray-dark);
-  --text-secondary: var(--gray-medium);
-  --text-muted: #6B7280;
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-muted: var(--gray-500);
   --text-inverse: #FFFFFF;
   
   --border-primary: #E5E7EB;
-  --border-secondary: #F3F4F6;
+  --border-secondary: var(--gray-100);
 }
 
 [data-theme="dark"] {
-  --bg-primary: var(--gray-dark);
-  --bg-secondary: #2A2A2C;
-  --bg-accent: #1A1A1C;
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+  --bg-accent: #1F2937;
   
-  --text-primary: #FFFFFF;
-  --text-secondary: var(--gray-light);
-  --text-muted: var(--gray-medium);
-  --text-inverse: var(--gray-dark);
+  --text-primary: #E6EDF3;
+  --text-secondary: #C9D1D9;
+  --text-muted: #9CA3AF;
+  --text-inverse: var(--gray-900);
   
-  --border-primary: #3F3F41;
-  --border-secondary: #2F2F31;
+  --border-primary: #30363D;
+  --border-secondary: #21262D;
 }
 
 /* Classes utilitaires personnalisées */
