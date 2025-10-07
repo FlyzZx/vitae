@@ -7,32 +7,49 @@ import styles from './Timeline.module.scss'
 
 const timelineData = [
   {
-    year: '2024',
-    title: 'Senior Developer',
-    company: 'Tech Company',
-    description: 'Lead développeur sur des projets innovants utilisant React, Next.js et TypeScript.',
+    year: '2023 - Présent',
+    title: 'Développeur Fullstack Senior / DevOps',
+    company: 'Decathlon',
+    highlights: [
+      'Outil de traduction IA (Next.js, Spring Boot, MongoDB)',
+      'DevOps : Docker, CI/CD, monitoring',
+      'CMS alimentant +80 sites Decathlon'
+    ],
     type: 'work'
   },
   {
-    year: '2022',
-    title: 'Full Stack Developer',
-    company: 'Digital Agency',
-    description: 'Développement d&apos;applications web complètes et d&apos;APIs performantes.',
+    year: '2016 - 2023',
+    title: 'Ingénieur Logiciel',
+    company: 'Kbane (Groupe ADEO)',
+    highlights: [
+      'Outils métier avec Symfony & React',
+      'Infrastructure GCP avec Kubernetes (GKE)',
+      'Système de paiement automatisé (Cloud Functions, Terraform)',
+      'Management d\'équipe'
+    ],
     type: 'work'
   },
   {
-    year: '2021',
-    title: 'Frontend Developer',
-    company: 'Startup',
-    description: 'Spécialisation dans les interfaces utilisateur modernes et les animations.',
-    type: 'work'
-  },
-  {
-    year: '2020',
-    title: 'Formation Développeur Web',
-    company: 'École/Formation',
-    description: 'Apprentissage des fondamentaux du développement web moderne.',
+    year: '2019',
+    title: 'Diplôme d\'Ingénieur',
+    company: 'IMT Lille Douai',
+    highlights: [
+      'Formation en développement logiciel',
+      'Spécialisation Big Data en dernière année',
+      'Architecture logicielle et systèmes distribués'
+    ],
     type: 'education'
+  },
+  {
+    year: '2018 - 2020',
+    title: 'CTO',
+    company: 'Hellogoodbail',
+    highlights: [
+      'App de matchmaking immobilier avec géolocalisation',
+      'Notifications intelligentes propriétaires/locataires',
+      'Stack : Android, Java, PHP Symfony, GCP'
+    ],
+    type: 'work'
   }
 ]
 
@@ -96,17 +113,23 @@ export default function Timeline() {
                         </div>
                       </div>
                       
-                      <h3 className="text-xl font-bold text-theme-primary mb-1">
+                      <h3 className="text-xl font-bold text-theme-primary mb-2">
                         {item.title}
                       </h3>
                       
-                      <p className="font-semibold mb-3" style={{ color: 'var(--primary)' }}>
+                      <p className="font-semibold mb-4" style={{ color: 'var(--primary)' }}>
                         {item.company}
                       </p>
                       
-                      <p className="text-theme-secondary leading-relaxed">
-                        {item.description}
-                      </p>
+                      <ul className={`space-y-2 text-sm text-theme-secondary ${isLeft ? 'text-right' : 'text-left'}`}>
+                        {item.highlights.map((highlight, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            {!isLeft && <span className="text-primary mt-0.5">•</span>}
+                            <span className="flex-1">{highlight}</span>
+                            {isLeft && <span className="text-primary mt-0.5">•</span>}
+                          </li>
+                        ))}
+                      </ul>
                     </motion.div>
                   </div>
 
