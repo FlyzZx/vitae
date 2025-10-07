@@ -9,10 +9,10 @@ export default function About() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   const skills = [
-    { icon: '🚀', title: 'Innovation', desc: 'Solutions créatives' },
-    { icon: '⚡', title: 'Performance', desc: 'Code optimisé' },
-    { icon: '🎨', title: 'Design', desc: 'UX/UI moderne' },
-    { icon: '🔧', title: 'Technique', desc: 'Stack moderne' }
+    { icon: '💻', title: 'Full-Stack Dev', desc: 'Frontend & Backend' },
+    { icon: '🔧', title: 'DevOps & Cloud', desc: 'K8s, Docker, GCP' },
+    { icon: '🚀', title: 'Scalable Apps', desc: 'Production-ready' },
+    { icon: '⚡', title: 'Flexible', desc: 'Missions & Long-terme' }
   ]
 
   return (
@@ -40,18 +40,35 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p>
-              Passionné par le développement web et les nouvelles technologies, 
-              je transforme les idées en solutions digitales innovantes et performantes.
+              Je suis <strong className="text-theme-primary">développeur full-stack</strong> avec de solides compétences DevOps, 
+              spécialisé dans la création d&apos;applications web scalables, d&apos;outils internes 
+              et de plateformes cloud-ready pour startups et entreprises en croissance.
             </p>
             
             <p>
-              Mon approche combine créativité technique et attention aux détails, 
-              toujours dans l&apos;objectif de créer des expériences utilisateur exceptionnelles.
+              Que vous ayez besoin d&apos;une <strong className="text-theme-primary">API sur mesure</strong>, 
+              d&apos;un <strong className="text-theme-primary">front-end moderne</strong> ou d&apos;un 
+              <strong className="text-theme-primary"> pipeline CI/CD automatisé</strong>, 
+              je peux vous accompagner de l&apos;idée à la production.
             </p>
             
             <p>
-              Curieux et en veille technologique constante, j&apos;aime relever de nouveaux défis 
-              et collaborer avec des équipes dynamiques pour donner vie aux projets les plus ambitieux.
+              Je travaille avec des technologies comme <strong className="text-theme-primary">PHP (Symfony)</strong>, 
+              <strong className="text-theme-primary"> JavaScript (React, Next.js)</strong>, 
+              <strong className="text-theme-primary"> Java (Spring Boot)</strong>, 
+              <strong className="text-theme-primary"> MongoDB</strong>, et je déploie sur 
+              <strong className="text-theme-primary"> Google Cloud</strong> avec 
+              <strong className="text-theme-primary"> Kubernetes</strong>, 
+              <strong className="text-theme-primary"> Docker</strong> et 
+              <strong className="text-theme-primary"> Terraform</strong>.
+            </p>
+            
+            <p>
+              Je prends en charge l&apos;ensemble de votre projet — du développement à l&apos;infrastructure — 
+              en garantissant un code propre, maintenable et prêt pour la production. 
+              Que ce soit pour une <strong className="text-theme-primary">mission ponctuelle</strong> ou une 
+              <strong className="text-theme-primary"> collaboration long terme</strong>, 
+              je m&apos;adapte à vos besoins avec une communication claire et transparente.
             </p>
           </motion.div>
 
