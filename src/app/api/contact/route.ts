@@ -6,12 +6,44 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, message } = body
+    const { name, email, message, turnstileToken } = body
 
     // Validation
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Tous les champs sont requis' },
+        { status: 400 }
+      )
+    }
+
+    // Validation du token Turnstile
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: 'Validation CAPTCHA requise' },
+        { status: 400 }
+      )
+    }
+
+    // Vérifier le token Turnstile avec l'API Cloudflare
+    const turnstileResponse = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: turnstileToken,
+        }),
+      }
+    )
+
+    const turnstileData = await turnstileResponse.json()
+
+    if (!turnstileData.success) {
+      return NextResponse.json(
+        { error: 'Validation CAPTCHA échouée' },
         { status: 400 }
       )
     }

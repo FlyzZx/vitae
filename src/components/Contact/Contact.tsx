@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
+import { Turnstile } from '@marsidev/react-turnstile'
 import styles from './Contact.module.scss'
 
 export default function Contact() {
@@ -15,9 +16,18 @@ export default function Contact() {
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Vérifier que le CAPTCHA est validé
+    if (!turnstileToken) {
+      setStatus('error')
+      setErrorMessage('Veuillez valider le CAPTCHA')
+      return
+    }
+
     setStatus('loading')
     setErrorMessage('')
 
@@ -27,7 +37,10 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken
+        }),
       })
 
       const data = await response.json()
@@ -38,12 +51,14 @@ export default function Contact() {
 
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
+      setTurnstileToken('')
       
       // Réinitialiser le statut après 5 secondes
       setTimeout(() => setStatus('idle'), 5000)
     } catch (error) {
       setStatus('error')
       setErrorMessage(error instanceof Error ? error.message : 'Une erreur est survenue')
+      setTurnstileToken('') // Réinitialiser le token pour forcer une nouvelle validation
     }
   }
 
@@ -170,12 +185,30 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Cloudflare Turnstile CAPTCHA */}
+              <div className="flex justify-center">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => {
+                    setTurnstileToken('')
+                    setStatus('error')
+                    setErrorMessage('Erreur de validation CAPTCHA')
+                  }}
+                  onExpire={() => setTurnstileToken('')}
+                  options={{
+                    theme: 'auto',
+                    size: 'normal'
+                  }}
+                />
+              </div>
+
               <motion.button
                 type="submit"
-                disabled={status === 'loading'}
+                disabled={status === 'loading' || !turnstileToken}
                 className={`w-full p-4 ${styles.submitButton} rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
-                whileHover={status !== 'loading' ? { scale: 1.02 } : {}}
-                whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
+                whileHover={status !== 'loading' && turnstileToken ? { scale: 1.02 } : {}}
+                whileTap={status !== 'loading' && turnstileToken ? { scale: 0.98 } : {}}
               >
                 {status === 'loading' ? 'Envoi en cours...' : 'Envoyer le message'}
               </motion.button>
