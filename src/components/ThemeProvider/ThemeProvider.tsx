@@ -12,17 +12,34 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Initialisation côté client uniquement
+    if (typeof window === 'undefined') return 'light'
+    
+    const savedTheme = localStorage.getItem('theme') as Theme
+    if (savedTheme) return savedTheme
+    
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
 
   useEffect(() => {
-    // Récupérer le thème sauvegardé ou utiliser la préférence système
-    const savedTheme = localStorage.getItem('theme') as Theme
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    const initialTheme = savedTheme || systemTheme
-    
-    setTheme(initialTheme)
-    document.documentElement.setAttribute('data-theme', initialTheme)
-  }, [])
+    // Appliquer le thème initial
+    document.documentElement.setAttribute('data-theme', theme)
+
+    // Écouter les changements de préférences système (seulement si pas de thème sauvegardé)
+    const savedTheme = localStorage.getItem('theme')
+    if (!savedTheme) {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      const handleChange = (e: MediaQueryListEvent) => {
+        const newTheme = e.matches ? 'dark' : 'light'
+        setTheme(newTheme)
+        document.documentElement.setAttribute('data-theme', newTheme)
+      }
+
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [theme])
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'

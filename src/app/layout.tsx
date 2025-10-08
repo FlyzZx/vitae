@@ -76,20 +76,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="scroll-smooth">
+    <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const savedTheme = localStorage.getItem('theme');
-                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                const theme = savedTheme || systemTheme;
-                document.documentElement.setAttribute('data-theme', theme);
-              })();
-            `,
-          }}
-        />
         {/* Schema.org structured data for better SEO */}
         <script
           type="application/ld+json"
