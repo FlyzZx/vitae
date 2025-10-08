@@ -23,8 +23,10 @@ export default function Navigation() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout
+
     const handleScroll = () => {
-      // Calcul de la progression du scroll
+      // Calcul de la progression du scroll (immédiat)
       const totalScroll = document.documentElement.scrollTop
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
       const progress = (totalScroll / windowHeight) * 100
@@ -32,30 +34,36 @@ export default function Navigation() {
       setScrollProgress(progress)
       setIsVisible(totalScroll > 100)
 
-      // Détection de la section active
-      const sections = navigationItems.map(item => document.getElementById(item.id))
-      const scrollPosition = totalScroll + window.innerHeight / 2
+      // Détection de la section active (avec debounce léger)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        const sections = navigationItems.map(item => document.getElementById(item.id))
+        const scrollPosition = totalScroll + window.innerHeight / 2
 
-      // Si on est en bas de page, activer la dernière section
-      const isAtBottom = window.innerHeight + totalScroll >= document.documentElement.scrollHeight - 10
-      
-      if (isAtBottom) {
-        setActiveSection(navigationItems[navigationItems.length - 1].id)
-      } else {
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const section = sections[i]
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(navigationItems[i].id)
-            break
+        // Si on est en bas de page, activer la dernière section
+        const isAtBottom = window.innerHeight + totalScroll >= document.documentElement.scrollHeight - 10
+        
+        if (isAtBottom) {
+          setActiveSection(navigationItems[navigationItems.length - 1].id)
+        } else {
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i]
+            if (section && section.offsetTop <= scrollPosition) {
+              setActiveSection(navigationItems[i].id)
+              break
+            }
           }
         }
-      }
+      }, 50) // Debounce de 50ms pour éviter les changements trop rapides
     }
 
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Initial call
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(timeoutId)
+    }
   }, [])
 
   const scrollToSection = (sectionId: string) => {
@@ -93,7 +101,7 @@ export default function Navigation() {
           />
 
           {/* Navigation items verticaux */}
-          <div className="flex flex-col items-center gap-2 md:gap-3 ml-1 md:ml-2">
+          <div className="flex flex-col items-center gap-2 md:gap-3 ml-1 md:ml-2 relative">
             {navigationItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -121,7 +129,13 @@ export default function Navigation() {
                   <motion.div
                     className="absolute inset-0 bg-primary/5 rounded-xl border border-primary/20"
                     layoutId="activeSection"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    transition={{ 
+                      layout: {
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30
+                      }
+                    }}
                   />
                 )}
 
