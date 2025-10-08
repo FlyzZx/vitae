@@ -209,29 +209,3 @@ Dans le dashboard Vercel, ajouter :
 - [ ] Vérifier les métadonnées avec [opengraph.xyz](https://www.opengraph.xyz/)
 
 Voir `SEO-GUIDE.md` pour plus de détails.
-
-## 🤝 Contribution
-
-Ce projet est personnel mais les suggestions sont les bienvenues !
-
-1. Fork le projet
-2. Créer une branche (`git checkout -b feature/amazing-feature`)
-3. Commit les changes (`git commit -m 'Add amazing feature'`)
-4. Push (`git push origin feature/amazing-feature`)
-5. Ouvrir une Pull Request
-
-## 📄 Licence
-
-Ce projet est sous licence MIT - voir le fichier `LICENSE` pour plus de détails.
-
-## 👨‍💻 Auteur
-
-**Nicolas FARACI**
-- Portfolio : [nicolas-faraci.dev](https://nicolas-faraci.dev)
-- LinkedIn : [nicolas-faraci](https://www.linkedin.com/in/nicolas-faraci)
-- GitHub : [@FlyzCorp](https://github.com/FlyzCorp)
-- Email : nicolas.faraci.pro@gmail.com
-
----
-
-⭐ **Si ce projet vous plaît, n'hésitez pas à lui donner une étoile !**
