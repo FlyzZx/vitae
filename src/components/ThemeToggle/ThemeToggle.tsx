@@ -10,7 +10,7 @@ export default function ThemeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className={`fixed top-6 right-6 z-50 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${styles.themeToggleGlass}`}
+      className={`fixed top-6 right-6 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${styles.themeToggleGlass}`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, scale: 0 }}

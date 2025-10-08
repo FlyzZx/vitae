@@ -22,12 +22,12 @@ export default function Hero() {
       {/* Stack techno flottante sur tout le background */}
       <FloatingTechStack />
 
-      <div className="container mx-auto px-6 lg:px-12 xl:px-16 relative z-10 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-24 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 xl:gap-24 items-center">
           
           {/* Illustration à gauche avec stack techno */}
           <motion.div 
-            className={`${styles.illustrationColumn} flex justify-center lg:justify-end relative`}
+            className={`${styles.illustrationColumn} flex justify-center lg:justify-end relative order-2 lg:order-1`}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -55,29 +55,29 @@ export default function Hero() {
 
           {/* Message à droite - texte direct sans card */}
           <motion.div 
-            className="text-center lg:text-left w-full flex flex-col justify-start"
+            className="w-full flex flex-col justify-start order-1 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             {/* Container avec taille fixe pour le terminal ET les boutons */}
-            <div className="w-full">
+            <div className="w-full text-left">
               {/* Terminal - taille absolue fixe avec plus de hauteur */}
-              <div className="h-[350px] sm:h-[400px] lg:h-[450px] w-full mb-6">
+              <div className="h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] w-full mb-4 md:mb-6">
                 <TerminalPrompt onComplete={handleTypingComplete} />
               </div>
 
               {/* Espace réservé pour les boutons - hauteur fixe pour éviter le mouvement */}
-              <div className="h-[60px] flex items-center">
+              <div className="h-[130px] sm:h-[70px] flex items-center justify-center lg:justify-start">
                 {showContent && (
                   <motion.div 
-                    className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start w-full"
+                    className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start w-full"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
                   >
                   <motion.button 
-                    className={`px-6 py-3 ${styles.primaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
+                    className={`px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base ${styles.primaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
                     onClick={() => {
                       document.getElementById('about')?.scrollIntoView({ 
                         behavior: 'smooth' 
@@ -89,7 +89,7 @@ export default function Hero() {
                     Découvrir mon parcours
                   </motion.button>
                   <motion.button 
-                    className={`px-6 py-3 ${styles.secondaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
+                    className={`px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base ${styles.secondaryButton} rounded-full font-semibold transition-all duration-200 whitespace-nowrap`}
                     onClick={() => {
                       document.getElementById('contact')?.scrollIntoView({ 
                         behavior: 'smooth' 
@@ -110,7 +110,7 @@ export default function Hero() {
       
       {/* Scroll indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1, repeat: Infinity, repeatType: "reverse" }}

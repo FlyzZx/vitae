@@ -68,6 +68,17 @@
 
 // Style pour la colonne d'illustration avec débordement léger
 .illustrationColumn {
+  // Sur mobile, alignement centré sans débordement
+  @media (max-width: 767px) {
+    padding: 0;
+    margin: 0;
+  }
+  
+  // Sur tablette, débordement léger
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-right: -4%;
+  }
+  
   // Sur desktop, on permet un léger débordement vers la droite
   @media (min-width: 1024px) {
     // On étend légèrement vers la droite sans affecter la grille
@@ -167,6 +178,9 @@
 @media (max-width: 767px) {
   .heroSection {
     // Effets minimalistes sur mobile
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    
     &::after {
       opacity: 0.2;
       animation: none;
@@ -177,9 +191,6 @@
     &::before {
       display: none; // Pas de scan lines sur mobile
     }
-    
-    // Débordement réduit sur mobile
-    margin-right: -5%;
   }
 }
 

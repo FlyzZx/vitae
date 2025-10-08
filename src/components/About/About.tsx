@@ -16,8 +16,8 @@ export default function About() {
   ]
 
   return (
-    <section id="about" ref={ref} className="py-20 bg-theme">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="about" ref={ref} className="py-12 md:py-16 lg:py-20 bg-theme">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -25,7 +25,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl lg:text-5xl font-bold text-theme-primary mb-8"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-theme-primary mb-6 md:mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -34,7 +34,7 @@ export default function About() {
           </motion.h2>
           
           <motion.div 
-            className="text-lg lg:text-xl text-theme-secondary leading-relaxed space-y-6"
+            className="text-base sm:text-lg lg:text-xl text-theme-secondary leading-relaxed space-y-4 md:space-y-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -74,7 +74,7 @@ export default function About() {
 
           {/* Skills highlight */}
           <motion.div 
-            className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="mt-8 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -82,15 +82,15 @@ export default function About() {
             {skills.map((skill, index) => (
               <motion.div 
                 key={skill.title}
-                className="p-6 bg-theme-secondary rounded-xl hover:shadow-lg transition-all duration-300"
+                className="p-4 sm:p-5 md:p-6 bg-theme-secondary rounded-xl hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="text-3xl mb-3">{skill.icon}</div>
-                <h3 className="font-semibold text-theme-primary mb-1">{skill.title}</h3>
-                <p className="text-sm text-theme-secondary">{skill.desc}</p>
+                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{skill.icon}</div>
+                <h3 className="font-semibold text-theme-primary mb-1 text-sm sm:text-base">{skill.title}</h3>
+                <p className="text-xs sm:text-sm text-theme-secondary">{skill.desc}</p>
               </motion.div>
             ))}
           </motion.div>

@@ -70,33 +70,33 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" ref={ref} className={`py-20 ${styles.contactSection}`}>
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="contact" ref={ref} className={`py-12 md:py-16 lg:py-20 ${styles.contactSection}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-theme-primary">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-theme-primary">
             Travaillons ensemble
           </h2>
-          <p className="text-xl text-theme-secondary max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-theme-secondary max-w-2xl mx-auto px-4">
             Une idée de projet ? Une collaboration ? N&apos;hésitez pas à me contacter !
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
           
           {/* Informations de contact */}
           <motion.div 
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-blue-300">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-blue-300">
                 Mes coordonnées
               </h3>
               

@@ -80,7 +80,7 @@ export default function Navigation() {
     <AnimatePresence>
       {isVisible && (
         <motion.nav
-          className={`fixed left-4 md:left-6 top-1/2 z-40 px-2 md:px-3 py-3 md:py-4 rounded-2xl transform -translate-y-1/2 ${styles.navigationSticky}`}
+          className={`hidden md:flex fixed left-4 md:left-6 top-1/2 z-40 px-2 md:px-3 py-3 md:py-4 rounded-2xl transform -translate-y-1/2 ${styles.navigationSticky}`}
           initial={{ opacity: 0, x: -20, scale: 0.9 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           exit={{ opacity: 0, x: -20, scale: 0.9 }}

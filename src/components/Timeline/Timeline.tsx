@@ -58,18 +58,18 @@ export default function Timeline() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section id="timeline" ref={ref} className={`py-20 ${styles['timeline-gradient-bg']}`}>
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="timeline" ref={ref} className={`py-12 md:py-16 lg:py-20 ${styles['timeline-gradient-bg']}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-theme-primary mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-theme-primary mb-3 md:mb-4">
             Mon Parcours
           </h2>
-          <p className="text-xl text-theme-secondary max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-theme-secondary max-w-2xl mx-auto px-4">
             Un voyage à travers mes expériences et apprentissages
           </p>
         </motion.div>
@@ -98,7 +98,7 @@ export default function Timeline() {
                   transition={{ duration: 0.8, delay: 0.5 + index * 0.2 }}
                 >
                   {/* Card */}
-                  <div className={`w-full max-w-md ${isLeft ? 'mr-8 text-right' : 'ml-8 text-left'}`}>
+                  <div className={`w-full max-w-md ${isLeft ? 'mr-8 text-right' : 'ml-8 text-left'} relative z-20`}>
                     <motion.div 
                       className="bg-theme p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-theme"
                       whileHover={{ y: -5 }}
