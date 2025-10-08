@@ -1,11 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { useTheme } from '../ThemeProvider'
 import styles from './ThemeToggle.module.scss'
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Attendre que le composant soit monté côté client pour éviter les problèmes d'hydratation
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Ne rien rendre pendant le SSR pour éviter les erreurs d'hydratation
+  if (!mounted) {
+    return (
+      <button
+        className={`fixed top-6 right-6 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${styles.themeToggleGlass}`}
+        style={{ opacity: 0, scale: 0 }}
+        aria-label="Toggle theme"
+      />
+    )
+  }
 
   return (
     <motion.button
