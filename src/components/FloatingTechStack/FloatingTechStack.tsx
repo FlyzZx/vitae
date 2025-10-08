@@ -85,7 +85,18 @@ export default function FloatingTechStack() {
   ]
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div 
+      className="hidden md:block"
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 1
+      }}
+    >
       {technologies.map((tech, index) => (
         <motion.div
           key={tech.name}

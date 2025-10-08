@@ -12,7 +12,7 @@ interface ProfileIllustrationProps {
 export default function ProfileIllustration({ src, alt = "Nicolas FARACI - Portrait" }: ProfileIllustrationProps) {
   return (
     <motion.div 
-      className="relative z-10 w-96 h-[28rem] lg:w-[32rem] lg:h-[36rem] xl:w-[38rem] xl:h-[42rem]"
+      className="relative z-5 w-64 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[28rem] lg:w-[32rem] lg:h-[36rem] xl:w-[38rem] xl:h-[42rem]"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
     >

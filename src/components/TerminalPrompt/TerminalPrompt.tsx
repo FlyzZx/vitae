@@ -43,9 +43,9 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       command: "cat skills.json",
       output: [
         "{",
-        '  "frontend": ["Next.js", "React", "TypeScript"],',
-        '  "backend": ["Java Spring Boot", "PHP Symfony"],',
-        '  "data": ["Kafka", "MongoDB", "PostgreSQL"],',
+        '  "frontend": ["Next.js", "React"],',
+        '  "backend": ["Spring Boot", "Symfony"],',
+        '  "database": ["MongoDB", "PostgreSQL"],',
         '  "cloud": ["Kubernetes", "GCP"]',
         "}"
       ],
@@ -55,7 +55,6 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       prompt: "nicolas@dev:~$",
       command: "git status",
       output: [
-        "On branch main",
         "Prêt pour de nouveaux projets ! 🚀"
       ],
       delay: 120
@@ -72,10 +71,14 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
   }, [])
 
   useEffect(() => {
+    let isMounted = true
+    
     const executeCommands = async () => {
       await new Promise(resolve => setTimeout(resolve, 300))
 
       for (let cmdIndex = 0; cmdIndex < commands.length; cmdIndex++) {
+        if (!isMounted) return
+        
         const cmd = commands[cmdIndex]
         
         // Ajouter la commande en cours de frappe
@@ -128,36 +131,42 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
       }
 
       // Animation terminée
-      setTimeout(() => {
-        setIsComplete(true)
-        onCompleteRef.current()
-      }, 300)
+      if (isMounted) {
+        setTimeout(() => {
+          setIsComplete(true)
+          onCompleteRef.current()
+        }, 300)
+      }
     }
 
     executeCommands()
+    
+    return () => {
+      isMounted = false
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // Les commandes sont constantes, pas besoin de les mettre en dépendance
 
   return (
-    <div className="w-full h-full bg-gray-900 rounded-lg shadow-2xl font-mono text-sm overflow-hidden flex flex-col">
+    <div className="w-full h-full bg-gray-900 rounded-lg shadow-2xl font-mono text-xs sm:text-sm overflow-hidden flex flex-col">
       {/* Terminal header */}
-      <div className="bg-gray-800 px-4 py-2 flex items-center space-x-2 flex-shrink-0 h-10">
-        <div className="flex space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+      <div className="bg-gray-800 px-3 sm:px-4 py-2 flex items-center space-x-2 flex-shrink-0 h-8 sm:h-10">
+        <div className="flex space-x-1.5 sm:space-x-2">
+          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
         </div>
-        <div className="text-gray-400 text-xs ml-4">Terminal</div>
+        <div className="text-gray-400 text-xs ml-2 sm:ml-4">Terminal</div>
       </div>
       
       {/* Terminal body - hauteur fixe moins le header */}
-      <div className="flex-1 p-4 text-green-400 overflow-y-auto space-y-2 min-h-0">
+      <div className="flex-1 p-3 sm:p-4 text-green-400 overflow-y-auto overflow-x-hidden space-y-1 sm:space-y-1.5 min-h-0 text-left">
         {executedCommands.map((cmd, cmdIndex) => (
-          <motion.div key={cmdIndex} className="space-y-1">
-            {/* Prompt + Command */}
-            <div className="flex items-center space-x-2">
-              <span className="text-blue-400 font-semibold">{cmd.prompt}</span>
-              <span className="text-white">
+          <motion.div key={cmdIndex} className="space-y-0.5">
+            {/* Prompt + Command - Afficher uniquement si c'est une nouvelle commande */}
+            <div className="flex items-start space-x-1 sm:space-x-2">
+              <span className="text-blue-400 font-semibold text-xs sm:text-sm whitespace-nowrap">{cmd.prompt}</span>
+              <span className="text-white text-xs sm:text-sm break-all">
                 {cmd.isTyping ? cmd.currentTypedCommand : cmd.command}
                 {cmd.isTyping && showCursor && (
                   <motion.span 
@@ -173,20 +182,20 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
             
             {/* Output */}
             {!cmd.isTyping && cmd.currentOutput && cmd.currentOutput.length > 0 && (
-              <div className="pl-2 space-y-1">
+              <div className="pl-1 sm:pl-2 space-y-0.5">
                 {cmd.currentOutput.map((line: string, lineIndex: number) => (
                   <motion.div
                     key={lineIndex}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2 }}
-                    className={
+                    className={`text-xs sm:text-sm break-all ${
                       line.includes('{') || line.includes('}') ? 'text-yellow-400' :
                       line.includes('"') ? 'text-blue-300' :
                       line.includes('🚀') ? 'text-green-300' :
                       line.includes('branch') ? 'text-purple-400' :
                       'text-gray-300'
-                    }
+                    }`}
                   >
                     {line}
                   </motion.div>
@@ -202,9 +211,9 @@ export default function TerminalPrompt({ onComplete }: TerminalPromptProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.5 }}
-            className="flex items-center space-x-2 pt-2"
+            className="flex items-center space-x-1 sm:space-x-2 pt-0.5 sm:pt-1"
           >
-            <span className="text-blue-400 font-semibold">nicolas@dev:~$</span>
+            <span className="text-blue-400 font-semibold text-xs sm:text-sm whitespace-nowrap">nicolas@dev:~$</span>
             <motion.span 
               className="text-green-400 ml-1 inline-block"
               animate={{ opacity: [1, 0] }}
