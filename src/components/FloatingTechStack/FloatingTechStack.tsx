@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface Tech {
   name: string
@@ -141,10 +142,13 @@ export default function FloatingTechStack() {
               ease: "easeInOut"
             }}
           >
-            <img 
+            <Image 
               src={tech.logo} 
               alt={tech.name}
+              width={64}
+              height={64}
               className="w-full h-full object-contain filter drop-shadow-lg"
+              unoptimized
             />
           </motion.div>
           
