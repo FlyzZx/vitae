@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Nicolas FARACI" }],
   creator: "Nicolas FARACI",
   publisher: "Nicolas FARACI",
-  metadataBase: new URL('https://nicolas-faraci.dev'), // À remplacer par votre domaine
+  metadataBase: new URL('https://www.nicolasfaraci.fr'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://nicolas-faraci.dev",
+    url: "https://www.nicolasfaraci.fr",
     siteName: "Nicolas FARACI - Portfolio",
     title: "Nicolas FARACI - Développeur Full-Stack & DevOps",
     description: "Développeur Full-Stack Senior avec +7 ans d'expérience. Expert React, Next.js, Spring Boot et DevOps (Kubernetes, GCP). Créateur d'applications scalables et performantes.",
@@ -64,10 +64,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    google: 'votre-code-google-search-console', // À remplacer
-  },
+  }
 };
 
 export default function RootLayout({
@@ -86,8 +83,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Nicolas FARACI",
-              "url": "https://nicolas-faraci.dev",
-              "image": "https://nicolas-faraci.dev/profile.png",
+              "url": "https://www.nicolasfaraci.fr",
+              "image": "https://www.nicolasfaraci.fr/profile.png",
               "jobTitle": "Développeur Full-Stack Senior & DevOps Engineer",
               "description": "Développeur Full-Stack avec +7 ans d'expérience spécialisé en React, Next.js, Spring Boot et DevOps (Kubernetes, Docker, GCP)",
               "address": {
