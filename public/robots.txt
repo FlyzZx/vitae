@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://nicolas-faraci.dev/sitemap.xml
+Sitemap: https://www.nicolasfaraci.fr/sitemap.xml

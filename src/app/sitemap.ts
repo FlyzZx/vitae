@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://nicolas-faraci.dev' // À remplacer par votre domaine
+  const baseUrl = 'https://www.nicolasfaraci.fr' // À remplacer par votre domaine
 
   return [
     {
